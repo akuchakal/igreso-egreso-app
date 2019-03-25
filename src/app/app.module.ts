@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 // MODULOS
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // ngrx
 import { StoreModule } from '@ngrx/store';
@@ -14,6 +14,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+
+// Graficas
+import { ChartsModule } from 'ng2-charts';
 
 // Enviroments
 import { environment } from 'src/environments/environment';
@@ -28,6 +31,7 @@ import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { OrdeningresoEgresoPipe } from './ingreso-egreso/ordeningreso-egreso.pipe';
 
 @NgModule({
   declarations: [
@@ -40,12 +44,14 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrdeningresoEgresoPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -58,7 +64,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
         lock: true,
         persist: true
       }
-    })
+    }),
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
